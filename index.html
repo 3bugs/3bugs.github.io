@@ -78,9 +78,9 @@
     $.post(url, function (data) {
       const child = $('<div>').prependTo($('#result'));
       if (data.success) {
-        child.text('POP! ' + data.data.pointsAdded + ' Points added for SK at ' + new Date().toLocaleString());
+        child.text('POP! ' + data.data.pointsAdded + ' Points added for SK at ' + new Date().toLocaleTimeString());
       } else {
-        child.text('ERROR: ' + data.error + ' at ' + new Date().toLocaleString());
+        child.text('ERROR: ' + data.error + ' at ' + new Date().toLocaleTimeString());
         child.css('color', 'darkred');
       }
     });
@@ -94,7 +94,7 @@
           return b.scores - a.scores;
         }).reduce(function (total, item) {
           return `${total}${item.name} : ${item.scores.toLocaleString()}\n`;
-        }, 'LEADER BOARD\n');
+        }, `LEADER BOARD (last updated: ${new Date().toLocaleTimeString()})\n=======================================\n`);
         $('.right').text(text);
       }
     });
