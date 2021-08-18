@@ -31,7 +31,7 @@
 
   function go() {
     pop();
-    if (timer) clearInterval(timer);
+    clearInterval(timer);
 
     timer = setInterval(function () {
       pop()
@@ -41,9 +41,12 @@
   function pop() {
     const url = 'https://popjapi.deta.dev/clicks?click=800&key=SK';
     $.post(url, function (data) {
+      const child = $('<div>').prependTo($('#result'));
       if (data.success) {
-        const child = $("<div>").appendTo($('#result'));
-        child.text('Points added: ' + data.data.pointsAdded + ', ' + new Date());
+        child.text(data.data.pointsAdded + ' Points added for SK at ' + new Date().toLocaleString());
+      } else {
+        child.text('ERROR: ' + data.error + ' at ' + new Date().toLocaleString());
+        child.css('color', 'darkred');
       }
     });
   }
