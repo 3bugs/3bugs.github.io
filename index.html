@@ -148,7 +148,7 @@
       }
     })
         .fail(function (xhr, status, err) {
-          $('.right').text('Error fetching leader board data: ' + err);
+          $('.right').text(`Error fetching leader board data: ${err} (last updated: ${new Date().toLocaleTimeString()})`);
         });
   }
 
