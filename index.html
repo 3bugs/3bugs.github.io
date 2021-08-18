@@ -42,7 +42,7 @@
 <body>
 <form>
   <h4>POP BOT FOR SK, CODED BY PROMLERT LOVICHIT OSK111</h4>
-  <p>เมื่อ pop สำเร็จจะมีข้อความสถานะแสดงใต้ปุ่ม แต่หากผ่านไปสักพักยังไม่ปรากฏข้อความใดๆ ให้คลิกปุ่มครับ (คลิกแค่ครั้งเดียวพอ)</p>
+  <p>การ pop จะเกิดขึ้นอัตโนมัติทุก 5 วินาที เมื่อ pop สำเร็จจะมีข้อความสถานะแสดงใต้ปุ่ม แต่หากผ่านไปสักพักยังไม่ปรากฏข้อความใดๆ ขอให้คลิกปุ่มครับ (คลิกแค่ครั้งเดียวพอ)</p>
   <button type="button" class="btn btn-primary" onclick="return go()">POP for Suankularb !!!</button>
   <div id="result"></div>
 </form>
@@ -60,7 +60,7 @@
     if (timer) clearInterval(timer);
     timer = setInterval(function () {
       pop();
-    }, 3000);
+    }, 5000);
 
     getLeaderBoard();
     if (timerBoard) clearInterval(timerBoard);
