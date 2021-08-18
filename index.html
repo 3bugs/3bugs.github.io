@@ -81,7 +81,7 @@
         const text = data.data.teams.sort(function (a, b) {
           return b.scores - a.scores;
         }).reduce(function (total, item) {
-          return `${total}${item.name} (${item.key}) : ${item.scores.toLocaleString()}\n`;
+          return `${total}${item.name} : ${item.scores.toLocaleString()}\n`;
         }, '');
         $('.right').text(text);
       }
