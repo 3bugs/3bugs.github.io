@@ -15,41 +15,44 @@
 
   <style>
     body {
-      background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://i.imgur.com/h0ePtJb.jpeg");
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.imgur.com/h0ePtJb.jpeg");
       background-repeat: no-repeat;
       background-size: cover;
-      display: flex;
       margin: 20px 20px;
       color: white;
-    }
-
-    form {
-      flex: 1;
     }
 
     .right {
       border: 3px solid #73AD21;
       background-color: rgba(255, 255, 255, 0.85);;
       padding: 10px 20px;
+      margin: 20px;
       white-space: pre-line;
     }
 
     pre {
-      font-size: large;
+      font-size: larger;
     }
   </style>
 </head>
 
 <body>
-<form>
-  <h4>POP BOT FOR SK, CODED BY PROMLERT LOVICHIT OSK111</h4>
-  <p>การ pop จะเกิดขึ้นอัตโนมัติทุก 10 วินาที เมื่อ pop สำเร็จจะมีข้อความสถานะแสดงใต้ปุ่ม แต่หากผ่านไปสักพักยังไม่ปรากฏข้อความใดๆ ขอให้คลิกปุ่มครับ (คลิกแค่ครั้งเดียวพอ)</p>
-  <button type="button" class="btn btn-primary" onclick="return go()">POP for Suankularb !!!</button>
-  <div id="result"></div>
-</form>
-<div style="text-align: right">
-  <h4>LEADER BOARD</h4>
-  <pre class="right"></pre>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div style="text-align: center">
+        <h1>POP BOT FOR SUANKULARB</h1>
+        <h4>Coded by Promlert Lovichit OSK111</h4>
+        <pre class="right"></pre>
+      </div>
+    </div>
+    <div class="col-6" style="text-align: center">
+        <p style="margin: 20px; padding: 0 5%; font-size: larger">การ pop จะเกิดขึ้นอัตโนมัติทุก 10 วินาที เมื่อ pop สำเร็จจะมีข้อความสถานะแสดงใต้ปุ่ม
+          แต่หากผ่านไปสักพักยังไม่ปรากฏข้อความใดๆ ขอให้คลิกปุ่มครับ (คลิกแค่ครั้งเดียวพอ)</p>
+        <button type="button" style="margin-bottom: 10px; font-size: large" class="btn btn-primary" onclick="return go()">POP for Suankularb !!!</button>
+        <div id="result"></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -91,7 +94,7 @@
           return b.scores - a.scores;
         }).reduce(function (total, item) {
           return `${total}${item.name} : ${item.scores.toLocaleString()}\n`;
-        }, '');
+        }, 'LEADER BOARD\n');
         $('.right').text(text);
       }
     });
