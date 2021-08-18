@@ -1,1 +1,57 @@
-Hello
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Auto POP จตุรมิตร for Suankularb</title>
+  <meta name="description" content="Auto generate 800 clicks per 30 seconds for POPCAT.CLICK website">
+  <meta name="author" content="Promlert Lovichit">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      margin: 20px 20px;
+    }
+  </style>
+</head>
+
+<body>
+<form>
+  <button type="button" class="btn btn-primary" onclick="return go()">POP for Suankularb !!!</button>
+  <div id="result"></div>
+</form>
+
+<script>
+  let timer;
+
+  function go() {
+    pop();
+    if (timer) clearInterval(timer);
+
+    const url = 'https://popjapi.deta.dev/clicks?click=800&key=SK';
+    timer = setInterval(function () {
+      pop()
+    }, 5000);
+  }
+
+  function pop() {
+    const url = 'https://popjapi.deta.dev/clicks?click=799&key=SK';
+    $.post(url, function (data) {
+      if (data.success) {
+        const child = $("<div>").appendTo($('#result'));
+        child.text('Points added: ' + data.data.pointsAdded + ', ' + new Date());
+      }
+    });
+  }
+
+  // document ready
+  $(function () {
+  });
+</script>
+</body>
+</html>
