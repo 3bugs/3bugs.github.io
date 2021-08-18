@@ -67,6 +67,7 @@
 
       pre {
         font-size: x-small;
+        white-space: pre;
       }
     }
   </style>
@@ -132,12 +133,22 @@
       if (data.success) {
         const text = data.data.teams.sort(function (a, b) {
           return b.scores - a.scores;
-        }).reduce(function (total, item) {
-          return `${total}${item.name} : ${item.scores.toLocaleString()}\n`;
-        }, `LEADER BOARD (last updated: ${new Date().toLocaleTimeString()})\n=======================================\n`);
+        })
+            .reduce(function (total, item) {
+              return `${total}║${padWithSpaces(item.name.trim(), 32)}...${padWithSpaces(item.scores.toLocaleString(), 12)}....║\n`;
+            }, `LEADER BOARD (last updated: ${new Date().toLocaleTimeString()})\n╔═══════════════════════════════════════════════════╗\n`)
+            .concat('╚═══════════════════════════════════════════════════╝');
         $('.right').text(text);
       }
     });
+  }
+
+  function padWithSpaces(str, toLength) {
+    let result = str;
+    while (result.length < toLength) {
+      result = `.${result}`;
+    }
+    return result;
   }
 
   // document ready
