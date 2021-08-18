@@ -14,11 +14,25 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <style>
-    body {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.imgur.com/h0ePtJb.jpeg") no-repeat;
+    html {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.imgur.com/h0ePtJb.jpeg") no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
       background-size: cover;
-      margin: 20px 20px;
+    }
+
+    body {
+      font-size: 14px;
+      margin: 20px 10%;
+      background-color: rgba(255, 255, 255, 0.0);
       color: white;
+    }
+
+    @media only screen and (max-width: 600px) {
+      body {
+        margin: 20px 0;
+      }
     }
 
     .right {
@@ -37,6 +51,10 @@
       font-size: 2.5rem;
     }
 
+    p {
+      font-size: 1rem;
+    }
+
     pre {
       font-size: larger;
     }
@@ -48,6 +66,10 @@
 
       h2 {
         font-size: 2rem;
+      }
+
+      p {
+        font-size: 0.6rem;
       }
 
       pre {
@@ -62,6 +84,10 @@
 
       h2 {
         font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.4rem;
       }
 
       pre {
@@ -141,9 +167,9 @@
           return b.scores - a.scores;
         })
             .reduce(function (total, item) {
-              return `${total}║${padWithSpaces(item.name.trim(), 32)}...${padWithSpaces(item.scores.toLocaleString(), 12)}....║\n`;
-            }, `LEADER BOARD (last updated: ${new Date().toLocaleTimeString()})\n╔═══════════════════════════════════════════════════╗\n`)
-            .concat('╚═══════════════════════════════════════════════════╝');
+              return `${total}║${padWithSpaces(item.name.trim(), 30)}.${padWithSpaces(item.scores.toLocaleString(), 12)}..║\n`;
+            }, `LEADER BOARD (last updated: ${new Date().toLocaleTimeString()})\n╔═════════════════════════════════════════════╗\n`)
+            .concat('╚═════════════════════════════════════════════╝');
         $('.right').text(text);
       }
     })
