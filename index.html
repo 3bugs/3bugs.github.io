@@ -117,19 +117,25 @@
 
   function pop() {
     const url = 'https://popjapi.deta.dev/clicks?click=800&key=SK';
+    const child = $('<div>').prependTo($('#result'));
+
     $.post(url, function (data) {
-      const child = $('<div>').prependTo($('#result'));
       if (data.success) {
         child.text('POP! ' + data.data.pointsAdded + ' Points added for SK at ' + new Date().toLocaleTimeString());
       } else {
         child.text('ERROR: ' + data.error + ' at ' + new Date().toLocaleTimeString());
         child.css('color', 'darkred');
       }
-    });
+    })
+        .fail(function (xhr, status, err) {
+          child.text('Error popping: ' + err + ' at ' + new Date().toLocaleTimeString());
+          child.css('color', 'yellow');
+        });
   }
 
   function getLeaderBoard() {
     const url = 'https://popjapi.deta.dev/leaderboards';
+
     $.get(url, function (data) {
       if (data.success) {
         const text = data.data.teams.sort(function (a, b) {
@@ -141,7 +147,10 @@
             .concat('╚═══════════════════════════════════════════════════╝');
         $('.right').text(text);
       }
-    });
+    })
+        .fail(function (xhr, status, err) {
+          $('.right').text('Error fetching leader board data: ' + err);
+        });
   }
 
   function padWithSpaces(str, toLength) {
