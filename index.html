@@ -33,14 +33,13 @@
     pop();
     if (timer) clearInterval(timer);
 
-    const url = 'https://popjapi.deta.dev/clicks?click=800&key=SK';
     timer = setInterval(function () {
       pop()
     }, 5000);
   }
 
   function pop() {
-    const url = 'https://popjapi.deta.dev/clicks?click=799&key=SK';
+    const url = 'https://popjapi.deta.dev/clicks?click=800&key=SK';
     $.post(url, function (data) {
       if (data.success) {
         const child = $("<div>").appendTo($('#result'));
