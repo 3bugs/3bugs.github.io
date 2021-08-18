@@ -15,7 +15,18 @@
 
   <style>
     body {
+      display: flex;
       margin: 20px 20px;
+    }
+
+    form {
+      flex: 1;
+    }
+
+    .right {
+      border: 3px solid #73AD21;
+      padding: 10px 20px;
+      white-space: pre-line;
     }
   </style>
 </head>
@@ -25,17 +36,27 @@
   <button type="button" class="btn btn-primary" onclick="return go()">POP for Suankularb !!!</button>
   <div id="result"></div>
 </form>
+<div style="text-align: right">
+  LEADER BOARD
+  <pre class="right"></pre>
+</div>
 
 <script>
   let timer;
+  let timerBoard;
 
   function go() {
     pop();
-    clearInterval(timer);
-
+    if (timer) clearInterval(timer);
     timer = setInterval(function () {
-      pop()
+      pop();
     }, 3000);
+
+    getLeaderBoard();
+    if (timerBoard) clearInterval(timerBoard);
+    timerBoard = setInterval(function () {
+      getLeaderBoard();
+    }, 15000);
   }
 
   function pop() {
@@ -47,6 +68,20 @@
       } else {
         child.text('ERROR: ' + data.error + ' at ' + new Date().toLocaleString());
         child.css('color', 'darkred');
+      }
+    });
+  }
+
+  function getLeaderBoard() {
+    const url = 'https://popjapi.deta.dev/leaderboards';
+    $.get(url, function (data) {
+      if (data.success) {
+        const text = data.data.teams.sort(function (a, b) {
+          return b.scores - a.scores;
+        }).reduce(function (total, item) {
+          return `${total}${item.name} (${item.key}) : ${item.scores.toLocaleString()}\n`;
+        }, '');
+        $('.right').text(text);
       }
     });
   }
