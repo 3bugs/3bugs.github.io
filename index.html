@@ -34,6 +34,7 @@
 <body>
 <form>
   <h4>Auto POP for Suankularb, coded by Promlert Lovichit OSK111</h4>
+  <p>เมื่อ pop สำเร็จจะมีข้อความสถานะแสดงใต้ปุ่ม แต่หากผ่านไปสักพักยังไม่ปรากฏข้อความใดๆ ให้คลิกปุ่มครับ (คลิกแค่ครั้งเดียวพอ)</p>
   <button type="button" class="btn btn-primary" onclick="return go()">POP for Suankularb !!!</button>
   <div id="result"></div>
 </form>
@@ -65,7 +66,7 @@
     $.post(url, function (data) {
       const child = $('<div>').prependTo($('#result'));
       if (data.success) {
-        child.text(data.data.pointsAdded + ' Points added for SK at ' + new Date().toLocaleString());
+        child.text('POP! ' + data.data.pointsAdded + ' Points added for SK at ' + new Date().toLocaleString());
       } else {
         child.text('ERROR: ' + data.error + ' at ' + new Date().toLocaleString());
         child.css('color', 'darkred');
